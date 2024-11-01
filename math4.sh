@@ -10,25 +10,25 @@ ask_question() {
         a=$((RANDOM % 10 + 1))
         b=$((RANDOM % 10 + 1))
         correct_answer=$((a + b))
-        read -p "Question $i: What is $a + $b? " user_answer
+        read -r -p "Question $i: What is $a + $b? " user_answer
         ;;
       2)
         a=$((RANDOM % 50 + 1))
         b=$((RANDOM % 50 + 1))
         correct_answer=$((a - b))
-        read -p "Question $i: What is $a - $b? " user_answer
+        read -r -p "Question $i: What is $a - $b? " user_answer
         ;;
       3)
         a=$((RANDOM % 12 + 1))
         b=$((RANDOM % 12 + 1))
         correct_answer=$((a * b))
-        read -p "Question $i: What is $a * $b? " user_answer
+        read -r -p "Question $i: What is $a * $b? " user_answer
         ;;
       4)
         a=$((RANDOM % 100 + 1))
         b=$((RANDOM % 100 + 1))
         correct_answer=$(echo "scale=2; $a / $b" | bc)
-        read -p "Question $i: What is $a / $b (rounded to 2 decimal places)? " user_answer
+        read -r -p "Question $i: What is $a / $b (rounded to 2 decimal places)? " user_answer
         ;;
       *)
         echo "Invalid level."
@@ -54,12 +54,12 @@ main() {
   echo "3. Multiplication"
   echo "4. Division"
 
-  read -p "Enter the level number you want to attempt: " level
+  read -r -p "Enter the level number you want to attempt: " level
 
   case $level in
     1|2|3|4)
       echo -e "\nYou have chosen Level $level. You will be asked 5 questions."
-      ask_question $level
+      ask_question "$level"
       ;;
     *)
       echo "Invalid level selected. Exiting."
